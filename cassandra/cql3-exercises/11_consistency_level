@@ -1,0 +1,11 @@
+CONSISTENCY QUORUM;
+
+INSERT INTO users (id, name, email)
+  VALUES (111, 'jsmith', 'j@smith.com');
+
+CONSISTENCY ONE;
+
+SELECT name, email FROM users
+  WHERE email = 'michael@abc.de';
+
+CONSISTENCY;

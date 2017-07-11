@@ -1,0 +1,21 @@
+ALTER TABLE users ADD hobbies 
+  set<text>;
+
+UPDATE users SET hobbies = 
+  hobbies + {'badminton','jazz'} WHERE id = 101;
+
+CREATE TABLE followers (
+  user_id int PRIMARY KEY,
+  followers list<text>);
+
+INSERT INTO followers (
+  user_id, followers) 
+  VALUES (101, ['willi','heinz']);
+
+ALTER TABLE messages ADD 
+  comments map<text, text>;
+
+UPDATE messages SET comments 
+  = comments + {'otto' : 'thx for the info!'}
+  WHERE user_id = 103 AND
+        posted_on = 1384895223;

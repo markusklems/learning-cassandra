@@ -1,0 +1,2 @@
+ALTER KEYSPACE twotter WITH REPLICATION =
+  {'class' : 'NetworkTopologyStrategy', 'DC1' : 1, 'DC2': 1};

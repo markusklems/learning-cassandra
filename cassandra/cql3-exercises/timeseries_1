@@ -1,0 +1,60 @@
+CREATE KEYSPACE weatherapp
+WITH REPLICATION =
+{'class':'NetworkTopologyStrategy', 
+'DC1':1};
+
+USE weatherapp;
+
+CREATE TABLE temperatures (
+   weatherstation_id text,
+   event_time timestamp,
+   temperature text,
+   PRIMARY KEY  
+      (weatherstation_id,event_time)
+   );
+
+INSERT INTO temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1',
+'2013-11-22 10:01:00','72F');
+
+INSERT INTO temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1',
+'2013-11-22 10:01:00','72F');
+
+INSERT INTO temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1',
+'2013-11-22 11:00:45','76F');
+
+INSERT INTO temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station2',
+'2013-11-22 08:00:02','73F');
+
+INSERT INTO temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station2',
+'2013-11-22 09:00:45','74F');
+
+INSERT INTO temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station3',
+'2013-11-22 07:11:00','61F');
+
+INSERT INTO temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station3',
+'2013-11-22 12:10:50','62F');
+
+SELECT event_time, temperature
+FROM temperatures
+WHERE weatherstation_id='station1';
+
+SELECT temperature
+  FROM temperatures
+  WHERE weatherstation_id='station1'
+  AND event_time > '2013-11-22 00:00:00'
+  AND event_time < '2013-11-22 12:30:00';
+

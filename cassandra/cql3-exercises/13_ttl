@@ -1,0 +1,14 @@
+INSERT INTO users (id, name, password_reset_token) 
+  VALUES(109, 'timo','abc-xyz-123') 
+  USING TTL 77;
+
+SELECT TTL (password_reset_token)
+  FROM users
+  WHERE id = 109;
+
+INSERT INTO users (id, name) 
+  VALUES(110, 'anna');
+
+UPDATE users USING TTL 77
+  SET password_reset_token = 'abc-xyz-123'
+  WHERE id = 110;

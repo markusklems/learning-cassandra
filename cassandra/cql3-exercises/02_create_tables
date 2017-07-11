@@ -1,0 +1,16 @@
+USE twotter;
+
+CREATE TABLE users (
+	id int PRIMARY KEY,
+	name text,
+	email text
+);
+CREATE TABLE messages (
+	posted_on bigint,
+	user_id int,
+	user_name text,
+	body text,
+	PRIMARY KEY  (user_id, posted_on)
+);
+DESCRIBE TABLE users;
+DESCRIBE TABLE messages;

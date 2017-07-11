@@ -1,0 +1,4 @@
+SELECT name, email FROM users 
+  WHERE id = 101;
+
+SELECT * FROM users;
