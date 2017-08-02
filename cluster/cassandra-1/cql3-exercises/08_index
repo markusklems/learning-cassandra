@@ -1,0 +1,11 @@
+CREATE INDEX name_index ON 
+  users(name);
+
+CREATE INDEX email_index ON 
+  users(email);
+
+SELECT name, email FROM
+  users WHERE name = 'otto';
+
+SELECT name, email FROM
+  users WHERE email = 'michael@abc.de';

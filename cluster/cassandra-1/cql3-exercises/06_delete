@@ -1,0 +1,5 @@
+DELETE email FROM users
+  WHERE id = 105;
+
+DELETE FROM users
+  WHERE id = 106;

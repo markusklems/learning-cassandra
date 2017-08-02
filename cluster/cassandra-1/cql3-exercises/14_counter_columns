@@ -1,0 +1,19 @@
+CREATE TABLE votes (
+  user_id int,
+  msg_created_on bigint,
+  upvote counter,
+  downvote counter,
+  PRIMARY KEY (user_id, msg_created_on)
+  );
+
+UPDATE votes
+  SET upvote = upvote + 1
+  WHERE user_id = 101
+  AND msg_created_on = 1234;
+
+UPDATE votes
+  SET downvote = downvote + 2
+  WHERE user_id = 101
+  AND msg_created_on = 1234;
+
+SELECT * FROM votes;

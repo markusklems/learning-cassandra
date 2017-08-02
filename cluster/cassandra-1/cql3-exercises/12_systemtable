@@ -1,0 +1,5 @@
+USE system;
+DESC Tables;
+
+USE system_schema;
+DESC TABLES;

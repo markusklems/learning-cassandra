@@ -1,0 +1,32 @@
+CREATE TABLE temperatures_by_day (
+   weatherstation_id text,
+   date text,
+   event_time timestamp,
+   temperature text,
+   PRIMARY KEY ((weatherstation_id,date),
+                event_time)
+);
+
+INSERT INTO temperatures_by_day 
+(weatherstation_id,date,event_time,temperature)
+VALUES
+('station1','2013-11-22','2013-11-22 10:01:00','72F');
+
+INSERT INTO temperatures_by_day 
+(weatherstation_id,date,event_time,temperature)
+VALUES
+('station1','2013-11-22','2013-11-22 11:00:20','73F');
+
+INSERT INTO temperatures_by_day 
+(weatherstation_id,date,event_time,temperature)
+VALUES
+('station1','2013-11-22','2013-11-22 12:01:40','70F');
+
+INSERT INTO temperatures_by_day 
+(weatherstation_id,date,event_time,temperature)
+VALUES
+('station1','2013-11-22','2013-11-22 13:00:02','69F');
+
+SELECT * FROM temperatures_by_day
+WHERE weatherstation_id='station1'
+AND date='2013-11-22';

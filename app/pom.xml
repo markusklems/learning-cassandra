@@ -10,16 +10,16 @@
 	<name>Cassandra Training</name>
 
 	<dependencies>
-		<!--  <dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-core</artifactId>
-			<version>3.3.0</version>
-		</dependency>
 		<dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-mapping</artifactId>
-			<version>3.3.0</version>
-		</dependency> -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>com.datastax.cassandra</groupId> <artifactId>cassandra-driver-core</artifactId> 
+			<version>3.3.0</version> </dependency> <dependency> <groupId>com.datastax.cassandra</groupId> 
+			<artifactId>cassandra-driver-mapping</artifactId> <version>3.3.0</version> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.apache.cassandra</groupId>
 			<artifactId>cassandra-thrift</artifactId>
@@ -37,6 +37,10 @@
 				<exclusion>
 					<groupId>log4j</groupId>
 					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>guava</groupId>
+					<artifactId>guava</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -58,35 +62,47 @@
 		<dependency>
 			<groupId>com.netflix.astyanax</groupId>
 			<artifactId>astyanax-entity-mapper</artifactId>
-			<version>3.9.0</version>
+			<version>3.9.0</version>	
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>com.netflix.astyanax</groupId>
 			<artifactId>astyanax-recipes</artifactId>
 			<version>3.9.0</version>
 		</dependency>
+		-->
+		<dependency>
+			<groupId>com.netflix.astyanax</groupId>
+			<artifactId>astyanax-contrib</artifactId>
+			<version>3.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>15.0</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.5.3</version>
-        <configuration>
-          <descriptor>src/assembly/descriptor.xml</descriptor>
-        </configuration>
-        <executions>
-          <execution>
-            <id>create-archive</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<descriptor>src/assembly/descriptor.xml</descriptor>
+				</configuration>
+				<executions>
+					<execution>
+						<id>create-archive</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

@@ -1,0 +1,107 @@
+version: '2'
+services:
+  app:
+    build: ./app
+    container_name: app-server
+    command: tail -f /dev/null
+    volumes:
+      - ./app/src:/myapp/src
+    environment:
+      - CASSANDRA_HOSTS=cassandra1
+    networks:
+      cass_net:
+        ipv4_address: 172.16.238.10
+  cassandra1:
+    build: ./cluster/cassandra-1
+    container_name: cassandra-server-1
+    #ports:
+    # - "9042:9042"
+    # - "9160:9160"
+    # - "7000:7000"
+    # - "7001:7001"
+    # - "7199:7199"
+    volumes:
+      - ./cluster/cassandra-1/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
+      - ./cluster/cassandra-1/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
+      - ./cluster/cassandra-1/config/cassandra-topology.properties:/etc/cassandra/cassandra-topology.properties
+      - ./cluster/cassandra-1/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
+      - ./cluster/cassandra-1/config/jvm.options:/etc/cassandra/jvm.options
+      - ./cluster/cassandra-1/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
+      - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
+      - ./cluster/cassandra-1/cql3-exercises:/cql3-exercises
+    networks:
+      cass_net:
+        ipv4_address: 172.16.238.20
+    depends_on:
+     - graphite
+  cassandra2:
+    build: ./cluster/cassandra-2
+    container_name: cassandra-server-2
+    #command: /bin/bash -c "sleep 30 && echo ' -- Pausing to let system catch up ... -->' && /docker-entrypoint.sh cassandra -f"
+    #ports:
+    # - "9043:9042"
+    # - "9161:9160"
+    # - "7000:7000"
+    # - "7001:7001"
+    # - "7299:7299"
+    volumes:
+      - ./cluster/cassandra-2/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
+      - ./cluster/cassandra-2/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
+      - ./cluster/cassandra-2/config/cassandra-topology.properties:/etc/cassandra/cassandra-topology.properties
+      - ./cluster/cassandra-2/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
+      - ./cluster/cassandra-2/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
+      - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
+    networks:
+      cass_net:
+        ipv4_address: 172.16.238.21
+    depends_on:
+     - cassandra1
+  cassandra3:
+    build: ./cluster/cassandra-3
+    container_name: cassandra-server-3
+    #command: /bin/bash -c "sleep 30 && echo ' -- Pausing to let system catch up ... -->' && /docker-entrypoint.sh cassandra -f"
+    #ports:
+    # - "9044:9042"
+    # - "9162:9160"
+    # - "7000:7000"
+    # - "7001:7001"
+    # - "7399:7399"
+    volumes:
+      - ./cluster/cassandra-3/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
+      - ./cluster/cassandra-3/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
+      - ./cluster/cassandra-3/config/cassandra-topology.properties:/etc/cassandra/cassandra-topology.properties
+      - ./cluster/cassandra-3/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
+      - ./cluster/cassandra-3/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
+      - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
+    networks:
+      cass_net:
+        ipv4_address: 172.16.238.22
+    depends_on:
+     - cassandra2
+  graphite:
+    image: sitespeedio/graphite:0.9.14
+    container_name: graphite
+    ports:
+    - "2003:2003"
+    - "8080:80"
+    networks:
+      cass_net:
+        ipv4_address: 172.16.238.30
+  grafana:
+    image: grafana/grafana:3.1.0
+    container_name: grafana
+    ports:
+    - "3000:3000"
+    networks:
+      cass_net:
+        ipv4_address: 172.16.238.31
+    depends_on:
+    - graphite
+
+networks:
+  cass_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24

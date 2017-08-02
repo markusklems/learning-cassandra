@@ -1,0 +1,69 @@
+USE twotter;
+
+INSERT INTO users
+(id, name, email)
+VALUES (101, 'otto',
+'otto@abc.de');
+
+INSERT INTO users
+(id, name)
+VALUES (102, 'jane');
+
+INSERT INTO users
+(id, name)
+VALUES (103, 'karl');
+
+INSERT INTO users
+(id, name, email)
+VALUES (104, 'linda',
+'linda@abc.de');
+
+INSERT INTO users
+(id, name, email)
+VALUES (105, 'gerd',
+'g@rd.de');
+
+INSERT INTO users
+(id, name, email)
+VALUES (106, 'heinz',
+'heinz@xyz.de');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (101, 1384895178, 'otto',
+'Hello World!');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (101, 1384895319, 'otto',
+'Hello again...');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (104, 1384895222, 'linda',
+'Hi, Otto');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (103, 1384895223, 'karl',
+'rhabarber rhabarber');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (103, 1384895224, 'karl',
+'rhabarber rhabarber rhabarber');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (103, 1384895225, 'karl',
+'rhabarber rhabarber rhabarber rhabarber');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (103, 1384895226, 'karl',
+'rhabarber rhabarber rhabarber');
+
+INSERT INTO messages
+(user_id, posted_on, user_name, body)
+VALUES (103, 1384895227, 'karl',
+'rhabarber rhabarber');

@@ -1,0 +1,40 @@
+CREATE TABLE latest_temperatures (
+  weatherstation_id text,
+  event_time timestamp,
+  temperature text,
+  PRIMARY KEY (weatherstation_id, 
+    event_time),
+  ) WITH CLUSTERING ORDER BY
+    (event_time DESC);
+
+INSERT INTO latest_temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1', '2013-11-22 10:03:00','72F')
+USING TTL 60;
+
+INSERT INTO latest_temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1', '2013-11-22 10:04:00','73F')
+USING TTL 120;
+
+INSERT INTO latest_temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1', '2013-11-22 10:05:00','72F')
+USING TTL 180;
+
+INSERT INTO latest_temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1', '2013-11-22 10:06:00','73F')
+USING TTL 240;
+
+INSERT INTO latest_temperatures 
+(weatherstation_id, event_time, temperature)
+VALUES ('station1', '2013-11-22 10:07:00','71F')
+USING TTL 300;
+
+SELECT * FROM latest_temperatures
+WHERE weatherstation_id='station1';
+
+SELECT TTL (temperature)
+FROM latest_temperatures
+WHERE weatherstation_id='station1';
