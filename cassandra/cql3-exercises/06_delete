@@ -1,3 +1,5 @@
+USE twotter;
+
 DELETE email FROM users
   WHERE id = 105;
 

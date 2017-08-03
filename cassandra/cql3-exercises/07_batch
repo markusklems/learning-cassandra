@@ -1,3 +1,5 @@
+USE twotter;
+
 BEGIN BATCH
   INSERT INTO users(id, name, email)
     VALUES(107, 'john','j@doe.net')

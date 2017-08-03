@@ -1,3 +1,5 @@
+USE twotter;
+
 CREATE TABLE votes (
   user_id int,
   msg_created_on bigint,

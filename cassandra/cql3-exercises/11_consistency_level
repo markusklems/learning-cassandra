@@ -1,3 +1,5 @@
+USE twotter;
+
 CONSISTENCY QUORUM;
 
 INSERT INTO users (id, name, email)

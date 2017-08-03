@@ -1,3 +1,5 @@
+USE twotter;
+
 SELECT name, email FROM users 
   WHERE id = 101;
 

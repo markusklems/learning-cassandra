@@ -33,7 +33,7 @@ public class AstClient {
 	// Thrift port
 	public static final Integer CONN_PORT = 9160;
 	// provide (via Docker) as environment variable
-	public static final String SEED_HOSTS = System.getenv("CASSANDRA_HOSTS");
+	public static String SEED_HOSTS = System.getenv("CASSANDRA_HOSTS");
 
 	private static final Logger logger = LoggerFactory.getLogger(AstClient.class);
 
@@ -44,10 +44,12 @@ public class AstClient {
 
 	public void init() {
 		logger.debug("init()");
+		if(SEED_HOSTS == null) {
+			SEED_HOSTS = "cassandra-server";
+		}
 		logger.info("Seed hosts: " + SEED_HOSTS);
-		System.out.println("Seed hosts: " + SEED_HOSTS);
 
-		context = new AstyanaxContext.Builder().forCluster("Test Cluster").forKeyspace("test1")
+		context = new AstyanaxContext.Builder().forCluster("Test Cluster").forKeyspace("app2")
 				.withAstyanaxConfiguration(
 						new AstyanaxConfigurationImpl().setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE))
 				.withConnectionPoolConfiguration(new ConnectionPoolConfigurationImpl("MyConnectionPool").setPort(9160)

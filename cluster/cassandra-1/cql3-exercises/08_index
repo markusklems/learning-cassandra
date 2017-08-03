@@ -1,3 +1,5 @@
+USE twotter;
+
 CREATE INDEX name_index ON 
   users(name);
 

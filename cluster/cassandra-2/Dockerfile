@@ -3,7 +3,7 @@ FROM cassandra:3.11
 RUN apt-get update && apt-get install -y net-tools && apt-get -y install vim
 
 # JMX is running on 0.0.0.0, therefore we need to change the port.
-COPY config/cassandra-env.sh /etc/cassandra/cassandra-env.sh
+#COPY config/cassandra-env.sh /etc/cassandra/cassandra-env.sh
 
 # With docker-compose we don't want to sed the cassandra.yaml
 # Instead we mount the cassandra.yaml from local config dir.

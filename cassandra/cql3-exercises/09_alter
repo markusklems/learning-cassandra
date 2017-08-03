@@ -1,3 +1,5 @@
+USE twotter;
+
 ALTER TABLE users
   ADD password text;
 

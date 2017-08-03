@@ -1,3 +1,5 @@
+USE twotter;
+
 UPDATE users SET email = 
   'jane@smith.org'
   WHERE id = 102;
