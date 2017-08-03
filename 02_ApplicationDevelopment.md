@@ -20,7 +20,7 @@ You need to (re-)launch a cassandra-server container instance with rpc_server en
 
 Run the app server, link it to the cassandra server, and connect to the app server's bash:
 
-`docker run -it --rm  -v $(pwd)/src:/myapp/src --name app-server --link cassandra-server:latest myapp:latest /bin/bash`
+`docker run -it --rm  -e CASSANDRA_HOSTS=cassandra-server -v $(pwd)/src:/myapp/src --name app-server --link cassandra-server:latest myapp:latest /bin/bash`
 
 With the `-v`flag, your local (host) source directory is mounted into the container instance. If you change files on your local source directory, the change will be applied inside the container.
 
