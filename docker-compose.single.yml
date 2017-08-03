@@ -30,40 +30,40 @@ services:
         ipv4_address: 172.16.238.20
     depends_on:
      - graphite
-  cassandra2:
-    build: ./cluster/cassandra-2
-    container_name: cassandra-server-2
-    volumes:
-      - ./cluster/cassandra-2/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
-      - ./cluster/cassandra-2/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
-      - ./cluster/cassandra-2/config/cassandra-topology.properties:/etc/cassandra/cassandra-topology.properties
-      - ./cluster/cassandra-2/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
-      - ./cluster/cassandra-2/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
-      - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
-    environment:
-      - CQLSH_HOST=cassandra2
-    networks:
-      cass_net:
-        ipv4_address: 172.16.238.21
-    depends_on:
-     - cassandra1
-  cassandra3:
-    build: ./cluster/cassandra-3
-    container_name: cassandra-server-3
-    volumes:
-      - ./cluster/cassandra-3/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
-      - ./cluster/cassandra-3/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
-      - ./cluster/cassandra-3/config/cassandra-topology.properties:/etc/cassandra/cassandra-topology.properties
-      - ./cluster/cassandra-3/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
-      - ./cluster/cassandra-3/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
-      - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
-    environment:
-      - CQLSH_HOST=cassandra3
-    networks:
-      cass_net:
-        ipv4_address: 172.16.238.22
-    depends_on:
-     - cassandra2
+  #cassandra2:
+  #  build: ./cluster/cassandra-2
+  #  container_name: cassandra-server-2
+  #  volumes:
+  #    - ./cluster/cassandra-2/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
+  #    - ./cluster/cassandra-2/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
+  #    - ./cluster/cassandra-2/config/cassandra-topology.properties:/etc/cassandra/cassandra-topology.properties
+  #    - ./cluster/cassandra-2/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
+  #    - ./cluster/cassandra-2/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
+  #    - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
+  #  environment:
+  #    - CQLSH_HOST=cassandra2
+  #  networks:
+  #    cass_net:
+  #      ipv4_address: 172.16.238.21
+  #  depends_on:
+  #   - cassandra1
+  #cassandra3:
+  #  build: ./cluster/cassandra-3
+  #  container_name: cassandra-server-3
+  #  volumes:
+  #    - ./cluster/cassandra-3/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
+  #    - ./cluster/cassandra-3/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
+  #    - ./cluster/cassandra-3/config/cassandra-topology.properties:/etc/cassandra/cassandra-topology.properties
+  #    - ./cluster/cassandra-3/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
+  #    - ./cluster/cassandra-3/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
+  #    - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
+  #  environment:
+  #    - CQLSH_HOST=cassandra3
+  #  networks:
+  #    cass_net:
+  #      ipv4_address: 172.16.238.22
+  #  depends_on:
+  #   - cassandra2
   graphite:
     image: sitespeedio/graphite:0.9.14
     container_name: graphite

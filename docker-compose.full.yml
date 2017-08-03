@@ -1,16 +1,16 @@
 version: '2'
 services:
-  #app:
-  #  build: ./app
-  #  container_name: app-server
-  #  command: tail -f /dev/null
-  #  volumes:
-  #    - ./app/src:/myapp/src
-  #  environment:
-  #    - CASSANDRA_HOSTS=cassandra1
-  #  networks:
-  #    cass_net:
-  #      ipv4_address: 172.16.238.10
+  app:
+    build: ./app
+    container_name: app-server
+    command: tail -f /dev/null
+    volumes:
+      - ./app/src:/myapp/src
+    environment:
+      - CASSANDRA_HOSTS=cassandra1
+    networks:
+      cass_net:
+        ipv4_address: 172.16.238.10
   cassandra1:
     build: ./cluster/cassandra-1
     container_name: cassandra-server-1
@@ -23,8 +23,6 @@ services:
       - ./cluster/cassandra-1/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
       - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
       - ./cluster/cassandra-1/cql3-exercises:/cql3-exercises
-    environment:
-      - CQLSH_HOST=cassandra1    
     networks:
       cass_net:
         ipv4_address: 172.16.238.20
@@ -33,6 +31,7 @@ services:
   cassandra2:
     build: ./cluster/cassandra-2
     container_name: cassandra-server-2
+    command: /bin/bash -c "sleep 30 && echo ' -- Pausing to let system catch up ... -->' && /docker-entrypoint.sh cassandra -f"
     volumes:
       - ./cluster/cassandra-2/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
       - ./cluster/cassandra-2/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
@@ -40,8 +39,6 @@ services:
       - ./cluster/cassandra-2/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
       - ./cluster/cassandra-2/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
       - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
-    environment:
-      - CQLSH_HOST=cassandra2
     networks:
       cass_net:
         ipv4_address: 172.16.238.21
@@ -50,6 +47,7 @@ services:
   cassandra3:
     build: ./cluster/cassandra-3
     container_name: cassandra-server-3
+    command: /bin/bash -c "sleep 30 && echo ' -- Pausing to let system catch up ... -->' && /docker-entrypoint.sh cassandra -f"
     volumes:
       - ./cluster/cassandra-3/config/cassandra.yaml:/etc/cassandra/cassandra.yaml
       - ./cluster/cassandra-3/config/cassandra-env.sh:/etc/cassandra/cassandra-env.sh
@@ -57,8 +55,6 @@ services:
       - ./cluster/cassandra-3/config/cassandra-rackdc.properties:/etc/cassandra/cassandra-rackdc.properties
       - ./cluster/cassandra-3/monitoring/graphite.yaml:/etc/cassandra/graphite.yaml
       - ./cluster/monitoring/metrics-graphite-3.1.0.jar:/usr/share/cassandra/lib/metrics-graphite-3.1.0.jar
-    environment:
-      - CQLSH_HOST=cassandra3
     networks:
       cass_net:
         ipv4_address: 172.16.238.22
