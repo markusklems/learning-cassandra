@@ -20,12 +20,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.4</version>
 		</dependency>
-		
-
-		<!-- <dependency> <groupId>com.datastax.cassandra</groupId> <artifactId>cassandra-driver-core</artifactId> 
-			<version>3.3.0</version> </dependency> <dependency> <groupId>com.datastax.cassandra</groupId> 
-			<artifactId>cassandra-driver-mapping</artifactId> <version>3.3.0</version> 
-			</dependency> -->
 		<dependency>
 			<groupId>org.apache.cassandra</groupId>
 			<artifactId>cassandra-thrift</artifactId>
@@ -70,13 +64,11 @@
 			<artifactId>astyanax-entity-mapper</artifactId>
 			<version>3.9.0</version>	
 		</dependency>
-		<!--  
 		<dependency>
 			<groupId>com.netflix.astyanax</groupId>
 			<artifactId>astyanax-recipes</artifactId>
 			<version>3.9.0</version>
 		</dependency>
-		-->
 		<dependency>
 			<groupId>com.netflix.astyanax</groupId>
 			<artifactId>astyanax-contrib</artifactId>
