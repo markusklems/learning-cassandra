@@ -74,7 +74,8 @@ local.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#!cluster/monitoring/metrics-graphite-3.1.0.jar
+#*.jar
 *.war
 *.ear
 *.zip

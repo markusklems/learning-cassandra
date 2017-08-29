@@ -3,7 +3,7 @@
 ```
 cqlsh> CREATE KEYSPACE myspace WITH 
 replication = {'class': 
-'NetworkTopologyStrategy', 'dc1':2};
+'NetworkTopologyStrategy', 'dc1':2, 'dc2': 1};
 
 cqlsh> CREATE TABLE myspace.users(
 id int PRIMARY KEY,
@@ -53,6 +53,4 @@ $ cqlsh -u heinz -p linuxhotel
 
 cqlsh> SELECT * FROM myspace.users;
 Bad Request: User heinz has no SELECT permission on <table myspace.users> or any of its parents
-
-
 ```
